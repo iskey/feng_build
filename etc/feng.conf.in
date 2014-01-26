@@ -1,0 +1,39 @@
+## lighttpd like configuration
+var.basedir  = "@feng_basedir@"
+var.logdir   = "@feng_logdir@"
+var.statedir = "@feng_statedir@"
+
+# Non functional right now
+#server.modules = (
+#    "mod_access",
+#    "mod_accesslog"
+#)
+
+# bind to port (defaults to @fenice_rtsp_port@)
+# server.port         = 8554
+
+# bind to name (defaults to all interfaces)
+# server.bind         = "live.host.tld"
+
+# use sctp instead of tcp
+# $SERVER["socket"] == "localhost:5554" {
+#   sctp.protocol       = "enable"
+#   sctp.max_streams    = 16
+# }
+
+server.username      = "feng"
+server.groupname     = "feng"
+# Set log verbosity (defaults to Warnings):
+# 0 Warnings 1 Info 2 Client side 3 Debug 4 Verbose
+server.loglevel      = 1
+server.max-connections = @fenice_max_session@
+server.document-root = var.basedir + "/avroot"
+server.errorlog      = var.logdir  + "/error.log"
+accesslog.filename   = var.logdir + "/access.log"
+
+# CPD
+#cpd.port			= "30000"
+#cpd.db.host			= "localhost"
+#cpd.db.user			= "javauser"
+#cpd.db.password		= "javadude"
+#cpd.db.name			= "chillout_cpd"
